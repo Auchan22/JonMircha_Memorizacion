@@ -1,0 +1,14 @@
+La Memorización es un proceso de React, pudiendolo invocar por medio de "React.memo", que nos permite guardar en memoria aquellos componentes que se reciben por medio de props, y no sufren cambio alguno, para asi no tener que volver a renderizarlos. Sirve para aquellos componentes estaticos.
+Hay veces, que el uso de memo ayuda al rendimiento de nuestra app, y otras veces, es mejor que se vuelva a renderizar el componente.
+React.memo verifica los cambios en las props; aquellos componentes que usen un hook (useState, useReducer o useContext), se volveran a renderizar cuando su estado o contexto cambien.
+Este proceso "compara" que el componente memorizado no haya sufrido cambios. Cuando la memorizacion es más 'costosa' que el renderizado, nos conviene re-renderizar el componente.
+En nuestro ejemplo, el contenedor hijo, el cual esta dentro del contenedor Padre, cada vez que se renderiza el contenedor Padre (en este caso, cada vez que se modifica el estado de "value"), el contenedor Hijo tambien se renderiza, llegando a afectar el rendimiento de nuestra app.
+Para evitar este re-renderizado, podemos usar memo, ya que su componente Hijo no va a sufrir cambio alguno, y hasta que no se cambie, no se va a renderizar.
+Para aplicar esto, utilizamos la funcion memo de React.js, y tenemos que "envolver" en la funcion memo, como parametro, el componente que queremos memorizar (el hijo): memo(ContadorHijo).
+
+#Clase 2: useCallback #
+Supongamos que le queremos pasar funciones como propiedades a ese contenedor hijo guardado en memoria. El hook "useCallback" se encarga de memorizar la callback.
+React.memo memoriza el componente, pero cuando el componente recibe por medio de props, funciones, esas funciones, tambien se deben memorizar, por medio de "useCallback", en el contenedor padre.
+Memoriza una función, y ademas, en su arreglo de dependencias, hay que decirle cual es la variable que va a detectar un cambio de estado, y memorizara otra vez la funcion (vuelve a detectar un cambio); se parece al hook "useEffect".
+Gracias a que las funciones se memorizan, al hacer un cambio, no se vuelve a re-renderizar el componente hijo. En nuestro ejemplo, el input, a medida que escribimos, re-renderiza a "Contador.js", provocando que se vuelvan a renderizar las funciones 'sumar' y 'restar', provocando que el componente hijo no solo se re-renderice al suamr o restar, sino que se renderice cada vez que se escribia algo en el input.
+Si tenemos un componente que queremos memorizar, debemos utilizar memo y UseCallback (en caso que reciba funciones como props)
