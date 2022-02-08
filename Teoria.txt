@@ -12,4 +12,11 @@ React.memo memoriza el componente, pero cuando el componente recibe por medio de
 Memoriza una función, y ademas, en su arreglo de dependencias, hay que decirle cual es la variable que va a detectar un cambio de estado, y memorizara otra vez la funcion (vuelve a detectar un cambio); se parece al hook "useEffect".
 Gracias a que las funciones se memorizan, al hacer un cambio, no se vuelve a re-renderizar el componente hijo. En nuestro ejemplo, el input, a medida que escribimos, re-renderiza a "Contador.js", provocando que se vuelvan a renderizar las funciones 'sumar' y 'restar', provocando que el componente hijo no solo se re-renderice al suamr o restar, sino que se renderice cada vez que se escribia algo en el input.
 Si tenemos un componente que queremos memorizar, debemos utilizar memo y UseCallback (en caso que reciba funciones como props).
-En el caso que no se pase alguna variable al arbol de dependencias, React no sabra cuando memorizar las funciones cuando haya un cambio de algo, por lo que se ejecutaran una unica vez las funcioens que memorizo
+En el caso que no se pase alguna variable al arbol de dependencias, React no sabra cuando memorizar las funciones cuando haya un cambio de algo, por lo que se ejecutaran una unica vez las funciones que memorizo.
+
+#Clase 3: useMemo#
+UseMemo nos va a servir para memorizar valores que se calculen para luego imprimirse en pantalla; o hacer procesos pesados, como recibir datos de una API. Ejemplo: declaramos una variable con valor 0, y a medida que se renderiza el componente, va aumentado hasta un limite impuesto, afectara el renderizado y rendimiento de nuestra app.
+
+Cuando tengamos un valor calculado o el resultado de una funcion (afecta nuestra app), utilizaremos el hook "useMemo". Recibe 2 parametros, una funcion y un arbol de dependencias; memoriza el resultado de una funcion.
+
+Una vez memorizado ese valor calculado, el rendimiento de nuestra app va a mejorar, ya que no necesitara volver a renderizar ese valor cada vez que se re-renderice ese componente.
