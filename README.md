@@ -1,4 +1,4 @@
-# JonMircha React-Router
+# JonMircha React Memo
 
 _En este repositorio, vas a encontrar una pequeña guía sobre el uso de la memorización en React, con ejemplos practicos y teoricos sobre los hooks "useMemo" y "useCallback"._
 
